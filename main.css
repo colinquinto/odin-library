@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    --main-color: #0d9488;
+    --secondary-color: #115e59;
+}
+
+html, body {
+    height: 100vh;
+    min-width: 280px;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    grid-template: 1fr 8fr / 1fr;
+}
+
+header {
+    max-height: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 1px 5px #000;
+    z-index: 1;
+    padding: 20px;
+}
+
+header > p {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    background-color: #fff;
+    color: var(--main-color);
+}
+
+main {
+    height: 100%;
+    background-color: #f1f5f9;
+    display: grid;
+    grid-template: 100px repeat(auto-fill, minmax(300px, 1fr))  / repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+main > p {
+    align-self: center;
+    display: grid;
+    justify-items: center;
+    font-size: 1.5rem;
+    grid-column: 1 / -1;
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+main > p > button {
+    border-radius: 20px;
+    font-size: 0.9rem;
+    padding: 10px;
+    border: none;
+    background-color: var(--secondary-color);
+    color: #fff;
+    margin: 20px;
+}
+
+main > p > button:hover {
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+
+main .card {
+    display: grid;
+    align-items: center;
+    grid-template: repeat(auto-fit, 1fr) / 1fr;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 3px 3px 5px -2px #000;
+}
+
+main .card > p > input {
+    display: inline-block;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    accent-color: var(--main-color);
+}
+
+main .card > p > input:hover {
+    cursor: pointer;
+}
+
+main .card > p {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+main .card > p > span {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+main .card > button {
+    width: 30%;
+    height: 30px;
+    justify-self: end;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+main .card > button:hover {
+    background-color: #dc2626;
+    cursor: pointer;
+}
