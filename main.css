@@ -6,6 +6,7 @@
     box-sizing: border-box;
 }
 
+/* root selector --start */
 :root {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -13,18 +14,29 @@
     --main-color: #0d9488;
     --secondary-color: #115e59;
 }
+/* root selector --end */
 
+/* html, body --start */
 html, body {
     height: 100vh;
     min-width: 280px;
 }
+/* html, body --end */
 
+/* give all button cursor pointer */
+* > button:hover {
+    cursor: pointer;
+}
+
+/* container class -- start */
 .container {
     height: 100%;
     display: grid;
     grid-template: 1fr 8fr / 1fr;
 }
+/* container class -- end */
 
+/* header section --start */
 header {
     max-height: 100%;
     border: none;
@@ -45,7 +57,10 @@ header > p {
     background-color: #fff;
     color: var(--main-color);
 }
+/* header section --end */
 
+
+/* main section --start */
 main {
     height: 100%;
     background-color: #f1f5f9;
@@ -61,7 +76,7 @@ main > p {
     justify-items: center;
     font-size: 1.5rem;
     grid-column: 1 / -1;
-    color: var(--main-color);
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
@@ -70,59 +85,127 @@ main > p > button {
     font-size: 0.9rem;
     padding: 10px;
     border: none;
-    background-color: var(--secondary-color);
+    background-color: var(--main-color);
     color: #fff;
     margin: 20px;
 }
 
 main > p > button:hover {
-    background-color: var(--main-color);
-    cursor: pointer;
+    background-color: var(--secondary-color);
 }
 
+
 main .card {
+    min-height: 300px;
     display: grid;
     align-items: center;
-    grid-template: repeat(auto-fit, 1fr) / 1fr;
+    grid-template: 24px 1fr 1fr 1fr 1fr / 1fr;
     background-color: #fff;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 3px 3px 5px -2px #000;
+    border: 1px solid;
 }
 
-main .card > p > input {
+main .card > label > input {
     display: inline-block;
     vertical-align: middle;
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     accent-color: var(--main-color);
 }
 
-main .card > p > input:hover {
+main .card > label:hover, input[type="checkbox"]:hover {
     cursor: pointer;
 }
 
-main .card > p {
+
+main .card > * , dialog > form > label { /* include dialog form label to reduce repeated code */
     font-weight: bold;
     color: var(--secondary-color);
 }
 
 main .card > p > span {
-    font-weight: bold;
     color: var(--main-color);
 }
 
 main .card > button {
-    width: 30%;
-    height: 30px;
-    justify-self: end;
-    border-radius: 20px;
     border: none;
-    background-color: var(--main-color);
+    background: none;
+    width: 10%;
+    justify-self: end;
+}
+/* main section --end */
+
+
+/* dialog modal --start */
+dialog {
+    margin: auto;
+    max-width: 250px;
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+}
+
+dialog::backdrop {
+    background-color: #000;
+    opacity: 0.5;
+}
+
+dialog > form {
+    display: grid;
+    grid-template: 24px 1fr 1fr 1fr 1fr / 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+dialog > form > label > input:focus {
+    outline: none;
+}
+
+dialog > form > label > input[type="text"], [type="number"] {
+    padding: 5px;
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid;
+    font-size: 1rem;
+}
+
+dialog > form > label > input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 15px;
+    width: 15px;
+    accent-color: var(--main-color);
+}
+
+dialog > form > .status:hover, input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+dialog .close, .ok {
+    background: none;
+    border: none;
     color: #fff;
 }
 
-main .card > button:hover {
-    background-color: #dc2626;
-    cursor: pointer;
+dialog .close:focus {
+    outline: none;
+}
+
+dialog .method {
+    justify-self: end;
+}
+/* dialog modal --end */
+
+/* Remove number input type arrows on Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove number input type arrows on Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
