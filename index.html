@@ -14,24 +14,16 @@
         </header>
         <main>
             <p>Your Books&nbsp;<button class="add">+ Add Book</button></p>
-            <div class="card">
-                <button class="delete"><img src="icons/bin.svg" alt=""></button>
-                <p>Title: <span>Dune</span></p>
-                <p>Author: <span>Franklin Patrick Herbert Jr.</span></p>
-                <p>Pages: <span>896</span></p>
-                <label>Finished Reading: <input type="checkbox" name="read" id="read"></label>
-            </div>
         </main>
         <dialog>
             <form>
                 <div class="method">
-                    <button class="close" autofocus><img src="icons/close.svg" alt=""></button>
-                    <button method="dialog" class="ok" autofocus><img src="icons/check.svg" alt=""></button>
+                    <button autofocus class="close"><img src="icons/close.svg" alt=""></button>
+                    <button class="ok"><img src="icons/check.svg" alt=""></button>
                 </div>
-                <label>Title: <input type="text" id="title" placeholder="Title" autocomplete="off"></label>
-                <label>Author: <input type="text" id="author" placeholder="Author" autocomplete="off"></label>
-                <label>Number of Pages: <input type="number" min="1" step="1" id="pages" placeholder="0" autocomplete="off"></label>
-                <label class="status">Finished Reading: <input type="checkbox" id="status"></label>
+                <label>Title: <input type="text" id="title" placeholder="Title" autocomplete="off" minlength="1" required></label>
+                <label>Author: <input type="text" id="author" placeholder="Author" autocomplete="off" minlength="1" required></label>
+                <label>Number of Pages: <input type="number" min="1" step="1" id="pages" placeholder="0" required></label>
             </form>
         </dialog>
     </div>
