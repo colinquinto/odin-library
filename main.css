@@ -154,7 +154,7 @@ dialog::backdrop {
 
 dialog > form {
     display: grid;
-    grid-template: 24px 1fr 1fr 1fr 1fr / 1fr;
+    grid-template: 24px 1fr 1fr 1fr / 1fr;
     align-items: center;
     gap: 10px;
 }
