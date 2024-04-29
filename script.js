@@ -1,86 +1,106 @@
-const dialog = document.querySelector("dialog");
-const showModal = document.querySelector(".add");
-const closeModal = document.querySelector("dialog .close");
-const mainSection = document.querySelector("main")
 
-showModal.addEventListener("click", () => {
-  dialog.showModal();
-});
+class addBookToLibrary {
 
-closeModal.addEventListener("click", (e) => {
-  e.preventDefault();
-  dialog.close();
-});
-
-//--------------------------------------------------------------
-
-const getTitle = document.querySelector("#title");
-const getAuthor = document.querySelector("#author");
-const getPages = document.querySelector("#pages");
-const getStatus = document.querySelector("#status");
-const submitData = document.querySelector("form");
-
-let myLibrary = [];
-
-const addBookToLibrary = () => {
-  myLibrary.push({
-    title: title = getTitle.value,
-    author: author = getAuthor.value,
-    pages: pages = getPages.value,
-    stats: 'checked'
-  })
-}
-
-const createBookElement = (elem, content, spans, spanTxt) => {
-  const element = document.createElement(elem);
-  element.textContent = content;
-  const childElem = document.createElement(spans);
-    if (spans === "input") {
-        childElem.setAttribute("type", "checkbox");
+// Book constructor
+  constructor(title, author, pages) {
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
     }
-    else {
-      childElem.textContent = spanTxt;
-    }
-  element.appendChild(childElem);
-  return element
+
+// Create the elements that will contain the details of the book
+  createDetails(elem, content, child, childTxt) {
+    const makeElement = document.createElement(elem);
+    makeElement.textContent = content;
+    const childElem = document.createElement(child);
+      if (child === "input") {
+          childElem.setAttribute("type", "checkbox");
+       }
+       else {
+         childElem.textContent = childTxt;
+       }
+     makeElement.appendChild(childElem);
+     return makeElement
+  }
+
+// Create the div that will contain the book
+  createBook = () => {
+
+    const insertBook = document.createElement("div");
+          insertBook.setAttribute("class", "card");
+
+          // Add a delete button to every book that will be created
+          const removeBtn = document.createElement("button");
+          removeBtn.setAttribute("class", "delete")
+          const removeIcon = document.createElement("img");
+          removeIcon.setAttribute("src", "icons/bin.svg");
+          removeBtn
+          .appendChild(removeIcon);
+
+          // Construct the book
+          insertBook
+          .append(
+            this.createDetails("p", "Title: ", "span", this.title),
+            this.createDetails("p", "Author: ", "span", this.author),
+            this.createDetails("p", "Pages: ", "span", this.pages),
+            this.createDetails("label", "Finished Reading: ", "input"),
+            removeBtn
+          );
+
+          // Display the book
+          const mainSection = document.querySelector("main")
+          mainSection.appendChild(insertBook);
+  }
 }
 
-const createBookDiv = (book) => {
-  const insertBook = document.createElement("div");
-        insertBook.setAttribute("class", "card");
-        const removeBtn = document.createElement("button");
-        removeBtn.setAttribute("class", "delete")
-        const removeIcon = document.createElement("img");
-        removeIcon.setAttribute("src", "icons/bin.svg");
-        removeBtn.appendChild(removeIcon);
-        insertBook.appendChild(removeBtn);
-        insertBook.appendChild(createBookElement('p', "Title: ", 'span', book.title));
-        insertBook.appendChild(createBookElement('p', "Author: ", 'span', book.author));
-        insertBook.appendChild(createBookElement('p', "Pages: ", 'span', book.pages));
-        insertBook.appendChild(createBookElement('label', "Finished Reading: ", 'input', book.stats));
-        mainSection.appendChild(insertBook);
-}
+(modalFunc = () => {
+// Library elements selector
+  const getTitle = document.querySelector("#title");
+  const getAuthor = document.querySelector("#author");
+  const getPages = document.querySelector("#pages");
+  const submitData = document.querySelector("form");
 
-const displayBook = () => {
-  myLibrary.map((book) => {
-    createBookDiv(book)
-  })
-  myLibrary = [];
-}
+// Dialog elements selector
+  const dialog = document.querySelector("dialog");
+  const showModal = document.querySelector(".add");
+  const closeModal = document.querySelector("dialog .close");
+ 
 
-submitData.addEventListener('submit', (e) => {
-  e.preventDefault();
-  addBookToLibrary();
-  displayBook();
-  const deleteItem = document.querySelectorAll(".delete");
-  deleteItem.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      e.target.closest('div.card').remove();
+// Modal control
+  showModal.addEventListener("click", () => {
+      dialog.showModal();
+    });
+
+  closeModal.addEventListener("click", (e) => {
+      e.preventDefault();
+      dialog.close();
     })
+
+// Click event that adds a new book to the library
+  submitData.addEventListener('submit', (e) => {
+    // Prevent default of submit so that we can use the input values
+    e.preventDefault();
+
+    // Create a new instance of the class addBookToLibrary every submit,
+    // then create the book using the input values
+    const newBook = new addBookToLibrary(getTitle.value, getAuthor.value, getPages.value);
+    newBook.createBook();
+    // Add a click event to all of the delete buttons added to every book
+    // that will remove it from the page
+    const deleteItem = document.querySelectorAll(".delete");
+    deleteItem.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        e.target.closest('div.card').remove();
+      })
+    })
+    dialog.close();
+    // Reset the form every submit
+    submitData.reset();
   })
-  dialog.close();
-  submitData.reset();
-})
+})();
+
+
+
 
 
 
