@@ -65,7 +65,7 @@ main {
     height: 100%;
     background-color: #f1f5f9;
     display: grid;
-    grid-template: 100px repeat(auto-fill, minmax(300px, 1fr))  / repeat(auto-fill, minmax(230px, 1fr));
+    grid-template: 100px repeat(auto-fill, minmax(400px, 1fr))  / repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
     padding: 20px;
 }
@@ -94,47 +94,56 @@ main > p > button:hover {
     background-color: var(--secondary-color);
 }
 
-
-main .card {
-    min-height: 300px;
-    display: grid;
-    align-items: center;
-    grid-template: 24px 1fr 1fr 1fr 1fr / 1fr;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 3px 3px 5px -2px #000;
-    border: 1px solid;
+.card {
+    height: 400px;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-color);
+    border-left: 20px solid var(--secondary-color);
+    border-radius: 20px 0 0 20px;
+    padding: 10px;
+    box-shadow: 0 0 5px -1px black, inset -1px 1px 2px rgba(255, 255, 255, 0.5);
+    word-wrap: break-word;
+    overflow: auto;
+    color: #fff;
 }
 
-main .card > label > input {
+.card:has(input:checked) {
+    background-color: #4ade80;
+    color: var(--secondary-color);
+}
+
+.card > label > input {
     display: inline-block;
     vertical-align: middle;
-    height: 15px;
-    width: 15px;
-    accent-color: var(--main-color);
+    height: 20px;
+    width: 20px;
+    accent-color: #4ade80;
 }
 
-main .card > label:hover, input[type="checkbox"]:hover {
+.card > label:hover {
     cursor: pointer;
 }
 
 
-main .card > * , dialog > form > label { /* include dialog form label to reduce repeated code */
+.card > * { 
     font-weight: bold;
-    color: var(--secondary-color);
+    height: 100%;
+    padding: 10px;
+    align-content: center;
 }
 
-main .card > p > span {
-    color: var(--main-color);
-}
-
-main .card > button {
+.card > button {
+    margin-top: 10px;
+    height: 50%;
     border: none;
-    background: none;
-    width: 10%;
-    justify-self: end;
+    align-self: end;
+    align-content: center;
+    border-radius: 5px;
+    background: var(--secondary-color);
 }
+
 /* main section --end */
 
 
@@ -157,6 +166,11 @@ dialog > form {
     grid-template: 24px 1fr 1fr 1fr / 1fr;
     align-items: center;
     gap: 10px;
+}
+
+dialog > form > label {
+    font-weight: bold;
+    color: var(--secondary-color);
 }
 
 dialog > form > label > input:focus {
